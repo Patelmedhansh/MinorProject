@@ -27,7 +27,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ${{mtrix.os}}
+    runs-on: ${{matrix.os}}
     strategy:
     matrix:
     os: [ubuntu-latest, windows-latest , macOS-latest]
