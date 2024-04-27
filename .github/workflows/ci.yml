@@ -1,17 +1,23 @@
-name: Build and Notify
+name: Build and Push Docker Image
 
 on:
   push:
     branches:
-      - main
+      - main  # Adjust this to your main branch name
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -21,12 +27,13 @@ jobs:
           push: true
           tags: medhansh37/minorproject-sundown:latest
 
-  notify_slack:
+  slack_notifier:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_and_push
     steps:
-      - name: Send notification to Slack
-        uses: rtCamp/action-slack-notify@v2
+      - name: Send notification on Slack using Webhooks
+        uses: slackapi/slack-github-action@v1.24.0
         with:
-          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          message: "Git push done in the repo, MinorProject"
+          payload: '{"text": "Git push done in the repo, demogithubactionyttest"}'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
