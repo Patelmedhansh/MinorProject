@@ -1,4 +1,4 @@
-name: Build Docker Image and Notify Slack
+name: Build and Notify
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
