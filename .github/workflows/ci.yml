@@ -34,6 +34,6 @@ jobs:
       - name: Send notification on Slack using Webhooks
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          payload: '{"text": "Git push done in the repo, demogithubactionyttest"}'
+          payload: '{"text": "Git push done in the repo, MinorProject"}'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
