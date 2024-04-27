@@ -30,6 +30,5 @@ jobs:
       - name: Send notification to Slack
         uses: rtCamp/action-slack-notify@v2
         with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          slack_channel: ${{ secrets.SLACK_CHANNEL }}
+          slack_webhook: https://hooks.slack.com/services/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
           message: "Git push done in the repo, MinorProject"
