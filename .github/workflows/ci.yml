@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
+
 env:
- SLACK_WEBHOOK_URL: ${{ secret.SLACK_WEBHOOK_URL}}
-      
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
   build_docker_image:
@@ -32,13 +32,8 @@ jobs:
           
       - name: Slack Notification
         uses: act10ns/slack@v1
+        if: always()
         with: 
-         status: ${{ job.status }}
-         channel: '#meetups'
-         message: Deployed {{ env.GITHUB_REF_NAME }} branch Successfully
-        if: always()    
-      
-       
-
- 
-          
+          status: ${{ job.status }}
+          channel: '#meetups'
+          message: "Deployed ${{ github.ref }} branch Successfully"
