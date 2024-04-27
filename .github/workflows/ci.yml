@@ -35,5 +35,5 @@ jobs:
         if: always()
         with: 
           status: ${{ job.status }}
-          channel: '#meetups'
+          channel: '#cicd-pipeline'
           message: "Deployed ${{ github.ref }} branch Successfully"
