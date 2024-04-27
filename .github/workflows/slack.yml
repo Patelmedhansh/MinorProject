@@ -1,1 +1,18 @@
+name: Slack Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify_on_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send notification to Slack
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          slack_webhook: https://your_slack_webhook_url_here
+          message: "Git push done in the repo, MinorProject"
 
