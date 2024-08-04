@@ -28,6 +28,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          platforms: linux/amd64  # Specify the platform here
           push: true
           tags: medhansh37/minorproject-sundown:latest
 
