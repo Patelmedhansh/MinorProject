@@ -1,9 +1,8 @@
 # Use NGINX as the base image
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 # Copy the static files to the NGINX html directory
 COPY . /usr/share/nginx/html
-
 
 # Expose port 80
 EXPOSE 80
